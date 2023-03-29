@@ -1,0 +1,47 @@
+---
+type Props = {
+  name: string;
+  description: string;
+  image: string;
+};
+const { name, description, image } = Astro.props as Props;
+---
+
+<div
+  class="rounded-xl border-2 py-4 px-4 credit transition-all duration-1000 ease-in-out relative"
+>
+  <div class="grid place-items-center">
+    <img src={image} alt="" />
+  </div>
+  <h1 class="font-bold text-2xl text-center">{name}</h1>
+  <p class="text-center text-black/80 dark:text-white/80 pt-4 pb-5">{description}</p>
+</div>
+<style>
+  .credit::after {
+    transition: opacity 0.3s ease-in-out;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    border-radius: 12px;
+    height: 100%;
+    z-index: 1;
+    animation: rotate 3s linear infinite;
+  }
+  @keyframes rotate {
+    0% {
+      box-shadow: 2px -2px 5px 1px #db7093, 2px 2px 5px 1px #3737eb;
+    }
+    50% {
+      box-shadow: 2px -2px 5px 1px #3737eb, 2px 2px 5px 1px #db7093;
+    }
+    100% {
+      box-shadow: 2px -2px 5px 1px #db7093, 2px 2px 5px 1px #3737eb;
+    }
+  }
+  .credit:hover::after {
+    opacity: 1;
+  }
+</style>
